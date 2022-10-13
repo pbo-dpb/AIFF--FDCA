@@ -1,17 +1,5 @@
 # Vue 3 + Vite + Web Components (composants web)
 
-## Description
-
-### English
-
-This code provides a starting point for the development of research tools/interactive components that can be embedded on the PBO's main website.
-This template should help get you started developing with Vue 3 in Vite with the intent of building a standalone [Web Component](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
-
-### Français
-
-Ce code fournit un point de départ pour le développement d'outils de recherche/composants interactifs qui peuvent être intégrés au site Web principal du DPB.
-Ce modèle devrait vous aider à commencer à développer avec Vue 3 dans Vite avec l'intention de construire un [composant Web  (Web Component)](https://developer.mozilla.org/en-US/docs/Web/Web_Components) autonome.
-
 ## Project setup // Mise en route
 ```
 npm install
