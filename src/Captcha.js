@@ -2,14 +2,21 @@ const publicKey = import.meta.env.VITE_CAPTCHA_PUBLIC_KEY;
 
 export default class Captcha {
     constructor() {
+
+        this.token = null;
+
         const captchaContainerId = `captcha_${Math.ceil(Math.random() * 10000)}`;
 
         window.onloadTurnstileCallback = () => {
             window.turnstile.render(document.querySelector(`#${captchaContainerId}`), {
                 sitekey: publicKey,
-                callback: function (token) {
-                    console.log(`Challenge Success ${token}`);
-                },
+                callback: (token) => {
+                    this.token = token;
+
+                    setTimeout(() => {
+                        turnstile.reset(document.querySelector(`#${captchaContainerId}`));
+                    }, 29700);
+                }
             });
 
         };
