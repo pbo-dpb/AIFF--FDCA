@@ -1,31 +1,32 @@
 <template>
-  <div class="flex flex-col items-center gap-8">
-    Hello
-  </div>
+
+
+  <Celebration v-if="form.id"></Celebration>
+  <template v-else>
+
+    <slot></slot>
+
+  </template>
+
 </template>
 
 <script>
-import WrapperEventDispatcher from "./WrapperEventDispatcher.js"
-
 const language = document.documentElement.lang;
+import Celebration from "./components/Celebration.vue"
+import AccessibilityRequest from "./AccessibilityRequest.js"
+
 
 export default {
   data() {
     return {
-      language: language,
+      form: new AccessibilityRequest(),
     };
   },
-  computed: {
-    logoUrl() {
-      return logoUrl
-    }
-  },
   components: {
+    Celebration,
+
   },
   mounted() {
-
-    const pageTitle = this.language === 'fr' ? 'Demandes et commentaires sur l’accessibilité' : 'Accessibility Inquiries and Feedback';
-    (new WrapperEventDispatcher(pageTitle, null)).dispatch();
 
   }
 };
