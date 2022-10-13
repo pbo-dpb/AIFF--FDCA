@@ -1,13 +1,10 @@
 <template>
-<div class="flex flex-col justify-center items-center gap-8">
-  <img alt="Vue logo" :src="logoUrl" class="w-64" />
-  <ToolSplash />
+  <div class="flex flex-col items-center gap-8">
+    Hello
   </div>
 </template>
 
 <script>
-import logoUrl from "./assets/logo.svg?url";
-import ToolSplash from './components/ToolSplash.vue'
 import WrapperEventDispatcher from "./WrapperEventDispatcher.js"
 
 const language = document.documentElement.lang;
@@ -24,11 +21,10 @@ export default {
     }
   },
   components: {
-    ToolSplash,
   },
   mounted() {
 
-    const pageTitle = this.language === 'fr' ? 'Gabarit' : 'Boilerplate';
+    const pageTitle = this.language === 'fr' ? 'Demandes et commentaires sur l’accessibilité' : 'Accessibility Inquiries and Feedback';
     (new WrapperEventDispatcher(pageTitle, null)).dispatch();
 
   }

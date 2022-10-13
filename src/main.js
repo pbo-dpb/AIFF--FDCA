@@ -1,4 +1,4 @@
 import { defineCustomElement } from 'vue'
 import App from "./App.ce.vue"
 
-customElements.define('pbotool-sample', defineCustomElement(App))
+customElements.define('pbotool-aiff-fdca', defineCustomElement(App))
