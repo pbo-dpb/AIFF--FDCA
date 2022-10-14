@@ -5,16 +5,16 @@ export default class Captcha {
 
         this.token = null;
 
-        const captchaContainerId = `captcha_${Math.ceil(Math.random() * 10000)}`;
+        this.captchaContainerId = `captcha_${Math.ceil(Math.random() * 10000)}`;
 
         window.onloadTurnstileCallback = () => {
-            window.turnstile.render(document.querySelector(`#${captchaContainerId}`), {
+            window.turnstile.render(document.querySelector(`#${this.captchaContainerId}`), {
                 sitekey: publicKey,
                 callback: (token) => {
                     this.token = token;
 
                     setTimeout(() => {
-                        turnstile.reset(document.querySelector(`#${captchaContainerId}`));
+                        this.refreshToken()
                     }, 29700);
                 }
             });
@@ -22,7 +22,8 @@ export default class Captcha {
         };
 
         let aceScript = document.createElement('div');
-        aceScript.setAttribute('id', captchaContainerId);
+        aceScript.setAttribute('id', this.captchaContainerId);
+        document.querySelector("pbotool-aiff-fdca").innerHTML = "";
         document.querySelector("pbotool-aiff-fdca").appendChild(aceScript)
 
         let captchaScript = document.createElement('script')
@@ -32,4 +33,9 @@ export default class Captcha {
         document.head.appendChild(captchaScript)
     }
 
+
+
+    refreshToken() {
+        turnstile.reset(document.querySelector(`#${this.captchaContainerId}`));
+    }
 }
