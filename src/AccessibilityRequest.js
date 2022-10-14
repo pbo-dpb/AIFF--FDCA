@@ -5,9 +5,16 @@ import Contact from "./Contact.js";
 export default class AccessibilityRequest {
 
     constructor(payload) {
-        //this.captcha = new Captcha();
+        this.captcha = new Captcha();
         this.id = payload?.id;
-        this.contact = new Contact(payload?.contact);
+        this.request_type = payload?.request_type;
+        this.main = payload?.main ?? "";
+        this.contact = null;
+        if (payload?.contact) {
+            this.contact = new Contact(payload.contact);
+        }
+
+
     }
 
     get anonymous() {
@@ -29,5 +36,9 @@ export default class AccessibilityRequest {
         }
     }
 
+
+    serialize() {
+        return JSON.stringify(this)
+    }
 
 }

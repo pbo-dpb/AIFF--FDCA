@@ -1,4 +1,27 @@
 {
+    "request_types": {
+        "barrier_report": "I want to report an accessibility barrier",
+        "general_comment": "I have a general comment about accessibility",
+        "alt_document_request": "I want to request a document in an alternate format",
+        "general_question": "I have a question related to accessibility"
+    },
+    "main_textbox": {
+        "barrier_report": {
+            "label": "What accessibility barrier did you face?",
+            "hint": "Please describe the situation, issue or barrier in as much detail as possible. If the barrier was physical, in which building, floor, area, etc., was it located? If the barrier was web-related, on which site did it occur? Include a link if possible."
+        },
+        "general_comment": {
+            "label": "What is your comment?"
+        },
+        "alt_document_request":{
+            "label": "What document would you like to receive?",
+            "hint": "Please provide the document name and year of publication, or its URL."
+        },
+        "general_question": {
+            "label": "What is your question?",
+            "hint": "Please let us know how we can help you in as much detail as possible"
+        }
+    },
     "contact_form": {
         "name": {
             "label":"Name"

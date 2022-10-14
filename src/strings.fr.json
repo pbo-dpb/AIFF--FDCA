@@ -1,4 +1,10 @@
 {
+    "request_types": {
+        "barrier_report": "Je veux signaler un obstacle à l'accessibilité",
+        "general_comment": "J'ai un commentaire général à faire sur l'accessibilité",
+        "alt_document_request": "Je veux demander un document dans un format substitut",
+        "general_question": "J'ai une question concernant l'accessibilité"
+    },
     "contact_form": {
         "name": {
             "label":"Nom"

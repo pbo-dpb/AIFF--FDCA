@@ -4,19 +4,27 @@
   <Celebration v-if="form.id"></Celebration>
   <template v-else>
 
-    <form class="flex flex-col gap-4" @submit.prevent="handleSubmitAction">
+    <form class="flex flex-col gap-8" @submit.prevent="handleSubmitAction">
 
+      <RequestTypeSelector v-model="form.request_type"></RequestTypeSelector>
+
+
+      <MainTextbox v-if="form.request_type" :form.sync="form"></MainTextbox>
 
       <Contact v-if="!form.anonymous" :contact.sync="form.contact"></Contact>
 
-      <slot></slot>
+      <div v-show="form.request_type">
+        <slot></slot>
+      </div>
 
-      <button type="submit"
+      <button v-if="form.request_type" type="submit"
         class="rounded bg-blue-800 text-white dark:bg-blue-200 dark:text-black font-semibold hover:bg-blue-700 dark:hover:bg-blue-200 px-4 py-2 md:w-fit">
         {{ strings.submit_button_label }}
       </button>
 
-      {{ form.contact.name }}
+
+      {{ form.serialize() }}
+
     </form>
 
   </template>
@@ -26,6 +34,8 @@
 <script>
 import Celebration from "./components/Celebration.vue"
 import AccessibilityRequest from "./AccessibilityRequest.js"
+import RequestTypeSelector from "./components/RequestTypeSelector.js"
+import MainTextbox from "./components/MainTextbox.vue"
 
 import Contact from "./components/Contact.vue";
 import Strings from "./Strings.js"
@@ -38,8 +48,10 @@ export default {
     };
   },
   components: {
+    RequestTypeSelector,
     Celebration,
-    Contact
+    Contact,
+    MainTextbox
   },
   methods: {
     handleSubmitAction() {
