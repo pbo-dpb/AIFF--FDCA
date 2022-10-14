@@ -43,7 +43,7 @@ export default {
                         type: 'radio',
                         value: key,
                         onInput: () => this.$emit('update:modelValue', key),
-                        selected: this.modelValue === key,
+                        checked: this.modelValue === key,
                         class: 'sr-only ',
                         required: true,
                     }),

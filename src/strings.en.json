@@ -22,6 +22,17 @@
             "hint": "Please let us know how we can help you in as much detail as possible"
         }
     },
+    "anonymity_selector":{
+        "legend": "Would you like to submit this request anonymously?",
+        "choices": {
+            "yes": {
+                "label": "Yes, I would rather submit this request without being identified."
+            },
+            "no": {
+                "label": "No. I provide my name and contact information for follow-up (if needed)."
+            }
+        }
+    },
     "contact_form": {
         "name": {
             "label":"Name"

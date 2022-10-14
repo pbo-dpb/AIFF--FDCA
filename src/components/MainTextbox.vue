@@ -19,10 +19,10 @@ export default {
     computed: {
 
         label() {
-            return Strings.main_textbox[this.form.request_type].label
+            return Strings.main_textbox[this.form.requestType].label
         },
         hint() {
-            return Strings.main_textbox[this.form.request_type].hint
+            return Strings.main_textbox[this.form.requestType].hint
         }
     }
 };

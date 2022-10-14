@@ -9,12 +9,11 @@ export default class AccessibilityRequest {
         this.id = payload?.id;
         this.request_type = payload?.request_type;
         this.main = payload?.main ?? "";
-        this.contact = null;
-        if (payload?.contact) {
-            this.contact = new Contact(payload.contact);
-        }
+        this.contact = new Contact(payload?.contact);
+    }
 
-
+    get canRequestAnonymity() {
+        return !['alt_document_request'].includes(this.request_type)
     }
 
     get anonymous() {
@@ -34,6 +33,16 @@ export default class AccessibilityRequest {
         } else if (!this.contact) {
             this.contact = new Contact();
         }
+    }
+
+    get requestType() {
+        return this.request_type;
+    }
+
+    set requestType(rt) {
+        this.request_type = rt;
+        if (!this.canRequestAnonymity)
+            this.anonymous = false;
     }
 
 
