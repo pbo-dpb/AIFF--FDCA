@@ -1,1 +1,9 @@
-{}
+{
+    "contact_form": {
+        "name": {
+            "label":"Nom"
+        }
+    },
+    "submit_button_label": "Soumettre",
+    "required_field_label": "Obligatoire"
+}

@@ -1,1 +1,10 @@
-{}
+{
+    "contact_form": {
+        "name": {
+            "label":"Name",
+            "error": ""
+        }
+    },
+    "submit_button_label": "Submit",
+    "required_field_label": "Required"
+}
