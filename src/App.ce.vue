@@ -6,7 +6,8 @@
 
     <form class="flex flex-col gap-4" @submit.prevent="handleSubmitAction">
 
-      <Contact :contact.sync="form.contact"></Contact>
+
+      <Contact v-if="!form.anonymous" :contact.sync="form.contact"></Contact>
 
       <slot></slot>
 

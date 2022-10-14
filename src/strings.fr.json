@@ -2,6 +2,9 @@
     "contact_form": {
         "name": {
             "label":"Nom"
+        },
+        "email": {
+            "label":"Courriel"
         }
     },
     "submit_button_label": "Soumettre",
