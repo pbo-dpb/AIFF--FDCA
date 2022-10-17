@@ -1,7 +1,7 @@
 <template>
 
 
-  <Celebration v-if="form.id"></Celebration>
+  <Celebration v-if="state.shouldDisplayCelebration"></Celebration>
   <template v-else>
 
     <form class="flex flex-col gap-16" @submit.prevent="handleSubmitAction">
@@ -20,13 +20,22 @@
         <slot></slot>
       </div>
 
-      <button v-if="form.requestType" type="submit"
-        class="rounded bg-purple-800 text-white dark:bg-purple-200 dark:text-black font-semibold hover:bg-purple-700 dark:hover:bg-purple-200 px-4 py-2 md:w-fit">
-        {{ strings.submit_button_label }}
-      </button>
-
-
-      {{ form.serialize() }}
+      <div v-if="form.requestType" class="flex flex-row items-center gap-2">
+        <button type="submit" class="
+        rounded
+         bg-purple-800
+         text-white 
+         disabled:opacity-70
+          enabled:hover:bg-purple-700 
+          enabled:dark:hover:bg-purple-200 
+          px-4 
+          py-2 
+          md:w-fit
+          " :disabled="state.submittingForm" :aria-busy="state.submittingForm">
+          {{ strings.submit_button_label }}
+        </button>
+        <LoadingIndicator v-if="state.submittingForm" aria-hidden="true" class="h-8 w-8"></LoadingIndicator>
+      </div>
 
     </form>
 
@@ -40,6 +49,8 @@ import AccessibilityRequest from "./AccessibilityRequest.js"
 import RequestTypeSelector from "./components/RequestTypeSelector.js"
 import MainTextbox from "./components/MainTextbox.vue"
 import AnonymitySelector from "./components/AnonymitySelector.js"
+import LoadingIndicator from "./components/LoadingIndicator.vue"
+
 
 import ContactForm from "./components/ContactForm.vue";
 import Strings from "./Strings.js"
@@ -49,6 +60,11 @@ export default {
     return {
       form: new AccessibilityRequest(),
       strings: Strings,
+      state: {
+        shouldDisplayCelebration: false,
+        submittingForm: false
+      }
+
     };
   },
   components: {
@@ -56,11 +72,15 @@ export default {
     Celebration,
     ContactForm,
     MainTextbox,
-    AnonymitySelector
+    AnonymitySelector,
+    LoadingIndicator
   },
   methods: {
-    handleSubmitAction() {
-
+    async handleSubmitAction() {
+      this.state.submittingForm = true;
+      await this.form.submit();
+      this.state.submittingForm = false;
+      this.state.shouldDisplayCelebration = true;
     }
   }
 };

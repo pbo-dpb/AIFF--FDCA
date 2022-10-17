@@ -52,4 +52,10 @@ export default class AccessibilityRequest {
         return JSON.stringify(this)
     }
 
+    async submit() {
+        const serializedForm = this.serialize();
+
+
+    }
+
 }
