@@ -20,3 +20,16 @@ jobs:
           prerelease: false
           files: |
             dist.zip
+  deploy-server-side-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to Lambda
+        uses: appleboy/lambda-action@master
+        with:
+          aws_access_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ca-central-1
+          function_name: aiff-email-form
+          source: .lambda-mail-form-handler/index.js
+          layers: arn:aws:lambda:ca-central-1:764866452798:layer:chrome-aws-lambda:31
