@@ -60,5 +60,14 @@
         }
     },
     "submit_button_label": "Submit",
-    "required_field_label": "Required"
+    "required_field_label": "Required",
+    "celebration": {
+        "title": {
+            "barrier_report": "Your accessibility barrier report was successfully submitted.",
+            "general_comment": "Your comment was successfully submitted.",
+            "alt_document_request": "Your request for an alternate format was successfully submitted.",
+            "general_question": "Your question was successfully submitted."
+        },
+        "message": "Internal tracking number: :id."
+    }
 }

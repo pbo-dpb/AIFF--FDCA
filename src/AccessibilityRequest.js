@@ -1,4 +1,4 @@
-const endpointUrl = import.meta.env.VITE_CAPTCHA_SITE_KEY;
+const endpointUrl = import.meta.env.VITE_SUBMIT_ENDPOINT;
 import Captcha from "./Captcha.js"
 import Contact from "./Contact.js";
 
@@ -55,6 +55,17 @@ export default class AccessibilityRequest {
     async submit() {
         const serializedForm = this.serialize();
 
+        const rawResponse = await fetch(endpointUrl, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(serializedForm)
+        });
+        const content = await rawResponse.json();
+
+        return this.id = content.id;
 
     }
 

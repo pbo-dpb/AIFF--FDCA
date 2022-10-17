@@ -1,27 +1,27 @@
 <template>
+  <section aria-live="polite">
+
+    <Celebration v-if="state.shouldDisplayCelebration" :form="form"></Celebration>
+    <template v-else>
+
+      <form class="flex flex-col gap-16" @submit.prevent="handleSubmitAction">
+
+        <RequestTypeSelector v-model="form.requestType"></RequestTypeSelector>
 
 
-  <Celebration v-if="state.shouldDisplayCelebration"></Celebration>
-  <template v-else>
+        <MainTextbox v-if="form.requestType" :form.sync="form"></MainTextbox>
 
-    <form class="flex flex-col gap-16" @submit.prevent="handleSubmitAction">
+        <AnonymitySelector v-if="form.requestType && form.canRequestAnonymity" v-model="form.anonymous">
+        </AnonymitySelector>
 
-      <RequestTypeSelector v-model="form.requestType"></RequestTypeSelector>
+        <ContactForm v-if="form.requestType && !form.anonymous" :contact.sync="form.contact"></ContactForm>
 
+        <div v-show="form.requestType">
+          <slot></slot>
+        </div>
 
-      <MainTextbox v-if="form.requestType" :form.sync="form"></MainTextbox>
-
-      <AnonymitySelector v-if="form.requestType && form.canRequestAnonymity" v-model="form.anonymous">
-      </AnonymitySelector>
-
-      <ContactForm v-if="form.requestType && !form.anonymous" :contact.sync="form.contact"></ContactForm>
-
-      <div v-show="form.requestType">
-        <slot></slot>
-      </div>
-
-      <div v-if="form.requestType" class="flex flex-row items-center gap-2">
-        <button type="submit" class="
+        <div v-if="form.requestType" class="flex flex-row items-center gap-2">
+          <button type="submit" class="
         rounded
          bg-purple-800
          text-white 
@@ -32,15 +32,15 @@
           py-2 
           md:w-fit
           " :disabled="state.submittingForm" :aria-busy="state.submittingForm">
-          {{ strings.submit_button_label }}
-        </button>
-        <LoadingIndicator v-if="state.submittingForm" aria-hidden="true" class="h-8 w-8"></LoadingIndicator>
-      </div>
+            {{ strings.submit_button_label }}
+          </button>
+          <LoadingIndicator v-if="state.submittingForm" aria-hidden="true" class="h-8 w-8"></LoadingIndicator>
+        </div>
 
-    </form>
+      </form>
 
-  </template>
-
+    </template>
+  </section>
 </template>
 
 <script>
