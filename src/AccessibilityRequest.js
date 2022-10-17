@@ -28,6 +28,7 @@ export default class AccessibilityRequest {
          * so users can update the request type without losing
          * their already filled form data.
          */
+
         if (a) {
             this.contact = null;
         } else if (!this.contact) {

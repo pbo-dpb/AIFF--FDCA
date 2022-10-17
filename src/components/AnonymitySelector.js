@@ -1,49 +1,33 @@
 import { h } from 'vue'
 import Strings from "../Strings.js"
-
+import RadioSelect from './RadioSelect.js';
 export default {
     inheritAttrs: false,
     props: {
         modelValue: {},
     },
-    emits: ['update:modelValue', 'next'],
+    emits: ['update:modelValue'],
 
     render() {
-        const uid = `anonradio_${Math.ceil(Math.random() * 10000)}`;
-        console.log(this.modelValue);
 
-        return h('fieldset', { 'class': 'flex flex-col gap-4 border border-gray-300 p-3' }, [
-            h('legend', { class: "font-semibold", innerText: Strings.anonymity_selector.legend }),
-            ...([true, false]).map((requiresAnon) => {
-                let sliceClasses = [
-                    "flex",
-                    "flex-row",
-                    "gap-2",
-                    'items-center'
-                ];
+        // We must cast the value to a string in order for radio buttons to work correctly
+        // as booleans are casted to string inconsistently.
+        let stringedValue = this.modelValue ? 'true' : 'false';
 
-                return h('label', {
-                    class: sliceClasses.join(" ")
-                }, [
+        return h(RadioSelect, {
+            legend: Strings.anonymity_selector.legend,
+            options: {
+                "true": Strings.anonymity_selector.choices.yes.label,
+                "false": Strings.anonymity_selector.choices.no.label
+            },
+            modelValue: stringedValue,
+            onChange: (nv) => {
+                if (nv === "true") nv = true
+                else nv = false;
 
-                    h('input', {
-                        name: uid,
-                        id: `${uid}_${requiresAnon}`,
-                        type: 'radio',
-                        value: requiresAnon,
-                        onInput: () => this.$emit('update:modelValue', requiresAnon),
-                        checked: this.modelValue == requiresAnon,
-                        class: '',
-                        required: true,
-                    }),
+                this.$emit('update:modelValue', nv)
+            },
+        });
 
-                    h('span', {
-                        for: `${uid}_${requiresAnon}`,
-                        innerText: requiresAnon ? Strings.anonymity_selector.choices.yes.label : Strings.anonymity_selector.choices.no.label
-                    })
-                ]);
-            })
-
-        ]);
     }
 }
