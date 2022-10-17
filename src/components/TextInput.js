@@ -8,12 +8,14 @@ export default {
         'label': { type: String, required: true },
         'type': {
             type: String, default: 'text', validator(value) {
-                return ['text', 'email', 'number', 'multiline'].includes(value)
+                return ['text', 'email', 'number', 'tel', 'multiline'].includes(value)
             }
         },
         'required': { type: Boolean, default: false },
         'hint': { type: String },
-        'error': { type: String }
+        'error': { type: String },
+        'level': { type: Number, default: 0 }
+
     },
     emits: ['update:modelValue'],
     data() {
@@ -65,7 +67,7 @@ export default {
 
         nodes.push(h('label', {
             type: 'text',
-            class: `font-semibold flex flex-row gap-1 items-center ${this.shouldDisplayValidationState ? 'peer-invalid:text-red-800 peer-invalid:dark:text-red-200' : ''}`,
+            class: `font-semibold flex flex-row gap-1 items-center ${this.shouldDisplayValidationState ? 'peer-invalid:text-red-800 peer-invalid:dark:text-red-200' : ''} ${this.level === 0 ? 'text-lg' : ''}`,
             for: uid,
         }, [
             h('span', { innerText: this.label }),

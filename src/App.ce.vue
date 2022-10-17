@@ -4,7 +4,7 @@
   <Celebration v-if="form.id"></Celebration>
   <template v-else>
 
-    <form class="flex flex-col gap-8" @submit.prevent="handleSubmitAction">
+    <form class="flex flex-col gap-16" @submit.prevent="handleSubmitAction">
 
       <RequestTypeSelector v-model="form.requestType"></RequestTypeSelector>
 
@@ -14,14 +14,14 @@
       <AnonymitySelector v-if="form.requestType && form.canRequestAnonymity" v-model="form.anonymous">
       </AnonymitySelector>
 
-      <Contact v-if="form.requestType && !form.anonymous" :contact.sync="form.contact"></Contact>
+      <ContactForm v-if="form.requestType && !form.anonymous" :contact.sync="form.contact"></ContactForm>
 
       <div v-show="form.requestType">
         <slot></slot>
       </div>
 
       <button v-if="form.requestType" type="submit"
-        class="rounded bg-blue-800 text-white dark:bg-blue-200 dark:text-black font-semibold hover:bg-blue-700 dark:hover:bg-blue-200 px-4 py-2 md:w-fit">
+        class="rounded bg-purple-800 text-white dark:bg-purple-200 dark:text-black font-semibold hover:bg-purple-700 dark:hover:bg-purple-200 px-4 py-2 md:w-fit">
         {{ strings.submit_button_label }}
       </button>
 
@@ -41,7 +41,7 @@ import RequestTypeSelector from "./components/RequestTypeSelector.js"
 import MainTextbox from "./components/MainTextbox.vue"
 import AnonymitySelector from "./components/AnonymitySelector.js"
 
-import Contact from "./components/Contact.vue";
+import ContactForm from "./components/ContactForm.vue";
 import Strings from "./Strings.js"
 
 export default {
@@ -54,7 +54,7 @@ export default {
   components: {
     RequestTypeSelector,
     Celebration,
-    Contact,
+    ContactForm,
     MainTextbox,
     AnonymitySelector
   },

@@ -21,7 +21,7 @@ export default {
                 "false": Strings.anonymity_selector.choices.no.label
             },
             modelValue: stringedValue,
-            onChange: (nv) => {
+            'onUpdate:modelValue': (nv) => {
                 if (nv === "true") nv = true
                 else nv = false;
 

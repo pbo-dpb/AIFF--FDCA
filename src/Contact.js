@@ -3,7 +3,7 @@ import Strings from "./Strings";
 export default class Contact {
 
     constructor(payload) {
-        this.preferred_method = payload?.preferred_method;
+        this.preferred_method = payload?.preferred_method ?? 'email';
         this.name = payload?.name;
         this.email = payload?.email;
         this.phone = payload?.phone;

@@ -21,6 +21,7 @@ export default class AccessibilityRequest {
     }
 
     set anonymous(a) {
+
         /**
          * We must clear the contact object to avoid submitting it if the user
          * has taken positive steps to submit an anonymous request. We

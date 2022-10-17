@@ -1,9 +1,12 @@
 {
     "request_types": {
-        "barrier_report": "I want to report an accessibility barrier",
-        "general_comment": "I have a general comment about accessibility",
-        "alt_document_request": "I want to request a document in an alternate format",
-        "general_question": "I have a question related to accessibility"
+        "legend": "How can we help you?",
+        "options": {
+            "barrier_report": "I want to report an accessibility barrier",
+            "general_comment": "I have a general comment about accessibility",
+            "alt_document_request": "I want to request a document in an alternate format",
+            "general_question": "I have a question related to accessibility"
+        }
     },
     "main_textbox": {
         "barrier_report": {
@@ -34,11 +37,26 @@
         }
     },
     "contact_form": {
+        "legend": "How can we contact you?",
         "name": {
             "label":"Name"
         },
+        "preferred_method": {
+            "legend": "What is your preferred method of contact?",
+            "options": {
+                "email": "By email",
+                "phone":"Over the phone",
+                "postal": "Regular mail"
+            }
+        },
         "email": {
             "label":"Email"
+        },
+        "phone": {
+            "label":"Phone Number"
+        },
+        "postal": {
+            "label":"Address"
         }
     },
     "submit_button_label": "Submit",

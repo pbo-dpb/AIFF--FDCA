@@ -1,6 +1,7 @@
 <template>
     <fieldset class="flex flex-col gap-4">
-        <TextInput type="multiline" v-model="form.main" :label="label" :hint="hint" :required="true"></TextInput>
+        <TextInput type="multiline" v-model="form.main" :label="label" :hint="hint" :required="true">
+        </TextInput>
     </fieldset>
 </template>
 <script>
