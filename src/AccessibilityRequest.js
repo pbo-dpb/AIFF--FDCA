@@ -10,6 +10,7 @@ export default class AccessibilityRequest {
         this.request_type = payload?.request_type;
         this.main = payload?.main ?? "";
         this.contact = new Contact(payload?.contact);
+        this.language = payload?.language ?? document.documentElement.lang;
     }
 
     get canRequestAnonymity() {
@@ -61,7 +62,7 @@ export default class AccessibilityRequest {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(serializedForm)
+            body: (serializedForm)
         });
         const content = await rawResponse.json();
 
