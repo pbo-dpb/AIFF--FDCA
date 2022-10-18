@@ -4,7 +4,7 @@
     <Celebration v-if="state.shouldDisplayCelebration" :form="form"></Celebration>
     <template v-else>
 
-      <form class="flex flex-col gap-16" @submit.prevent="handleSubmitAction">
+      <form class="flex flex-col gap-8" @submit.prevent="handleSubmitAction">
 
         <RequestTypeSelector v-model="form.requestType"></RequestTypeSelector>
 

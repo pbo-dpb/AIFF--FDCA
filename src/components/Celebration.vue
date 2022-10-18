@@ -24,7 +24,7 @@ export default {
             return Strings.celebration.title[this.form.request_type]
         },
         message() {
-            return Strings.celebration.message.replace(":id", this.form.id);
+            return this.form.id ? Strings.celebration.message.replace(":id", this.form.id) : null;
         }
     }
 };

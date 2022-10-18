@@ -13,7 +13,7 @@ export default class AccessibilityRequest {
     }
 
     get canRequestAnonymity() {
-        return !['alt_document_request'].includes(this.request_type)
+        return !['alt_document_request', 'general_question'].includes(this.request_type)
     }
 
     get anonymous() {
