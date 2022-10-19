@@ -5,6 +5,26 @@ const fs = require('fs');
 const { randomUUID } = require('crypto');
 
 
+const sendConfirmationEmail = async function (strings, emailBody, contact) {
+
+    const emailParams = {
+        Destination: {
+            ToAddresses: [contact.email],
+        },
+        Message: {
+            Body: {
+                Text: { Data: `${strings.emails.confirmation.body}\n-----\n${emailBody}`, Charset: "UTF-8", },
+            },
+            Subject: { Data: strings.emails.confirmation.subject, Charset: "UTF-8", },
+        },
+        Source: process.env.EMAIL_FROM,
+        ReplyToAddresses: process.env.EMAIL_REPLY_TO.split(','),
+    };
+
+    const sendPromise = await ses.sendEmail(emailParams).promise();
+
+}
+
 const sendInternalEmail = async function (strings, emailBody) {
 
     const emailParams = {
@@ -24,8 +44,9 @@ const sendInternalEmail = async function (strings, emailBody) {
 
     const sendPromise = await ses.sendEmail(emailParams).promise();
 
-
 }
+
+
 
 const prepareEmailBody = function (strings, payload) {
 
@@ -179,6 +200,14 @@ exports.handler = async (event) => {
             statusCode: 500,
             body: 'An internal server error occured while sending SES email.',
         };
+    }
+
+    try {
+        if (body.contact && body.contact.email) {
+            await sendConfirmationEmail(strings, emailBody, body.contact)
+        }
+    } catch (e) {
+        console.error(e);
     }
 
 

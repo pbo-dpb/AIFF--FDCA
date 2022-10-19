@@ -76,7 +76,8 @@
             "subject": "Accessibility Inquiries and Feedback"
         },
         "confirmation": {
-                "subject": "Submission confirmation"
+                "subject": "Submission confirmation",
+                "body": "Thank you for submitting your request. You will find a copy of the information submitted below. Please feel free to contact our team for further clarification or if you have any questions."
         }
         
     }
