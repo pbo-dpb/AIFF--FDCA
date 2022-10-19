@@ -1,18 +1,84 @@
 {
     "request_types": {
-        "barrier_report": "Je veux signaler un obstacle à l'accessibilité",
-        "general_comment": "J'ai un commentaire général à faire sur l'accessibilité",
-        "alt_document_request": "Je veux demander un document dans un format substitut",
-        "general_question": "J'ai une question concernant l'accessibilité"
+        "legend": "How can we help you?",
+        "options": {
+            "barrier_report": "Je veux signaler un obstacle à l'accessibilité",
+            "general_comment": "J'ai un commentaire général à faire sur l'accessibilité",
+            "alt_document_request": "Je veux demander un document dans un format substitut",
+            "general_question": "J'ai une question concernant l'accessibilité"
+        }
+    },
+    "main_textbox": {
+        "barrier_report": {
+            "label": "Quel problème d'accessibilité avez-vous rencontré?",
+            "hint": "Veuillez décrire la situation, le problème ou l'obstacle de la manière la plus détaillée possible. Si l'obstacle était physique, dans quel bâtiment, étage, zone, etc. se trouvait-il ? Si l'obstacle était lié au Web, sur quel site s'est-il produit ? Incluez un lien si possible."
+        },
+        "general_comment": {
+            "label": "Quel est votre commentaire ?"
+        },
+        "alt_document_request":{
+            "label": "Quel document souhaitez-vous recevoir ?",
+            "hint": "Veuillez fournir le nom du document et l'année de publication, ou son URL."
+        },
+        "general_question": {
+            "label": "Quelle est votre question ?",
+            "hint": "Veuillez nous indiquer comment nous pouvons vous aider, de la manière la plus détaillée possible."
+        }
+    },
+    "anonymity_selector":{
+        "legend": "Souhaitez-vous soumettre cette demande de manière anonyme ?",
+        "choices": {
+            "yes": {
+                "label": "Oui, je préfère soumettre cette demande sans être identifié."
+            },
+            "no": {
+                "label": "Non. Je fournis mon nom et mes coordonnées pour le suivi (si nécessaire)."
+            }
+        }
     },
     "contact_form": {
+        "legend": "Comment pouvons-nous vous contacter ?",
         "name": {
             "label":"Nom"
         },
+        "preferred_method": {
+            "legend": "Quelle est votre méthode de contact préférée ?",
+            "options": {
+                "email": "Par courriel",
+                "phone":"Au téléphone",
+                "postal": "Courrier postal"
+            }
+        },
         "email": {
             "label":"Courriel"
+        },
+        "phone": {
+            "label":"Numéro de téléphone"
+        },
+        "postal": {
+            "label":"Adresse postale"
         }
     },
     "submit_button_label": "Soumettre",
-    "required_field_label": "Obligatoire"
+    "required_field_label": "Obligatoire",
+    "celebration": {
+        "title": {
+            "barrier_report": "Votre signalement d'obstacle à l'accessibilité a été soumis avec succès.",
+            "general_comment": "Votre commentaire a été soumis avec succès.",
+            "alt_document_request": "Votre demande de format alternatif a été soumise avec succès.",
+            "general_question": "Votre question a été soumise avec succès."
+        },
+        "message": "Numéro de suivi interne : :id."
+    },
+    "emails": {
+        
+        "internal": {
+            "subject": "Demandes de renseignements et commentaires sur l'accessibilité"
+        },
+        "confirmation": {
+                "subject": "Confirmation de la soumission",
+                "body": "Nous vous remercions d'avoir soumis votre demande. Vous trouverez une copie des informations soumises ci-dessous. N'hésitez pas à contacter notre équipe pour plus de précisions ou si vous avez des questions."
+        }
+        
+    }
 }

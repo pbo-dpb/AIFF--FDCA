@@ -22,7 +22,7 @@
         },
         "general_question": {
             "label": "What is your question?",
-            "hint": "Please let us know how we can help you in as much detail as possible"
+            "hint": "Please let us know how we can help you in as much detail as possible."
         }
     },
     "anonymity_selector":{
