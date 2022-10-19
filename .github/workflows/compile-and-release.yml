@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Prepare Lambda package
-        run: cp ./src/strings.en.json .lambda-mail-form-handler/strings.en.json && cp ./src/strings.fr.json .lambda-mail-form-handler/strings.fr.json && zip deployment.zip .lambda-mail-form-handler -r
+        run: cp ./src/strings.en.json .lambda-mail-form-handler/strings.en.json && cp ./src/strings.fr.json .lambda-mail-form-handler/strings.fr.json && cd .lambda-mail-form-handler && zip ../deployment.zip . -r
       - name: Deploy to Lambda
         uses: appleboy/lambda-action@master
         with:
