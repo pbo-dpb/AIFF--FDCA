@@ -37,6 +37,7 @@ export default {
                     } else {
                         sliceClasses = [...sliceClasses,
                             'hover:bg-purple-100',
+                            'hover:dark:bg-purple-900',
                             "cursor-pointer",
                         ];
                     }

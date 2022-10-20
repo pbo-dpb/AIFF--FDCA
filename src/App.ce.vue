@@ -30,7 +30,9 @@
          text-white 
          disabled:opacity-70
           enabled:hover:bg-purple-700 
-          enabled:dark:hover:bg-purple-200 
+          enabled:dark:hover:bg-purple-900 
+          
+          
           px-4 
           py-2 
           md:w-fit

@@ -42,8 +42,11 @@ export default {
             `border`,
             `border-gray-300`,
             `dark:border-gray-700`,
-            `rounded`, `p-1`,
-            `peer`
+            `rounded`,
+            `p-1`,
+            `peer`,
+            'dark:bg-gray-800',
+            'dark:text-white'
         ];
 
 
