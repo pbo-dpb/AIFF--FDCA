@@ -70,6 +70,10 @@
         },
         "message": "Numéro de suivi interne : :id."
     },
+    "error": {
+        "title": "Une erreur est survenue",
+        "message": "Un problème informatique nous empêche d'envoyer votre formulaire. Veuillez nous contacter par courriel ou par téléphone pour nous faire part de votre requête. Nous nous excusons des inconvénients que cette situation peut vous causer."
+    },
     "emails": {
         
         "internal": {

@@ -2,6 +2,7 @@
   <section aria-live="polite">
 
     <Celebration v-if="state.shouldDisplayCelebration" :form="form"></Celebration>
+
     <template v-else>
 
       <form class="flex flex-col gap-8" @submit.prevent="handleSubmitAction">
@@ -19,6 +20,8 @@
         <div v-show="form.requestType">
           <slot></slot>
         </div>
+
+        <Error v-if="state.shouldDisplayError" :form="form"></Error>
 
         <div v-if="form.requestType" class="flex flex-row items-center gap-2">
           <button type="submit" class="
@@ -45,6 +48,8 @@
 
 <script>
 import Celebration from "./components/Celebration.vue"
+import Error from "./components/Error.vue"
+
 import AccessibilityRequest from "./AccessibilityRequest.js"
 import RequestTypeSelector from "./components/RequestTypeSelector.js"
 import MainTextbox from "./components/MainTextbox.vue"
@@ -62,7 +67,8 @@ export default {
       strings: Strings,
       state: {
         shouldDisplayCelebration: false,
-        submittingForm: false
+        submittingForm: false,
+        shouldDisplayError: false
       }
 
     };
@@ -73,14 +79,19 @@ export default {
     ContactForm,
     MainTextbox,
     AnonymitySelector,
-    LoadingIndicator
+    LoadingIndicator,
+    Error
   },
   methods: {
     async handleSubmitAction() {
       this.state.submittingForm = true;
-      await this.form.submit();
+      try {
+        await this.form.submit();
+        this.state.shouldDisplayCelebration = true;
+      } catch (error) {
+        this.state.shouldDisplayError = true;
+      }
       this.state.submittingForm = false;
-      this.state.shouldDisplayCelebration = true;
     }
   }
 };

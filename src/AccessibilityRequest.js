@@ -64,6 +64,13 @@ export default class AccessibilityRequest {
             },
             body: (serializedForm)
         });
+
+        if (rawResponse.status === 422) {
+            throw await rawResponse.json();
+        } else if (rawResponse.status !== 200) {
+            throw await rawResponse.text();
+        }
+
         const content = await rawResponse.json();
 
         return this.id = content.id;
