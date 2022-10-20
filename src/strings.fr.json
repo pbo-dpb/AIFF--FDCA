@@ -1,6 +1,6 @@
 {
     "request_types": {
-        "legend": "How can we help you?",
+        "legend": "Comment pouvons-nous vous aider ?",
         "options": {
             "barrier_report": "Je veux signaler un obstacle à l'accessibilité",
             "general_comment": "J'ai un commentaire général à faire sur l'accessibilité",
