@@ -5,7 +5,7 @@
 
     <template v-else>
 
-      <form class="flex flex-col gap-8" @submit.prevent="handleSubmitAction">
+      <form class="flex flex-col gap-8" @submit.prevent="handleSubmitAction" v-if="form">
 
         <RequestTypeSelector v-model="form.requestType"></RequestTypeSelector>
 
@@ -58,21 +58,20 @@ import MainTextbox from "./components/MainTextbox.vue"
 import AnonymitySelector from "./components/AnonymitySelector.js"
 import LoadingIndicator from "./components/LoadingIndicator.vue"
 
-
 import ContactForm from "./components/ContactForm.vue";
 import Strings from "./Strings.js"
 
 export default {
+  props: ["name", "email"],
   data() {
     return {
-      form: new AccessibilityRequest(),
+      form: null,
       strings: Strings,
       state: {
         shouldDisplayCelebration: false,
         submittingForm: false,
         shouldDisplayError: false
       }
-
     };
   },
   components: {
@@ -94,6 +93,14 @@ export default {
         this.state.shouldDisplayError = true;
       }
       this.state.submittingForm = false;
+    }
+  },
+  mounted() {
+    this.form = new AccessibilityRequest();
+
+    if (this.email && this.name) {
+      this.form.contact.email = this.email;
+      this.form.contact.name = this.name;
     }
   }
 };

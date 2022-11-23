@@ -60,7 +60,7 @@ export default {
             ].join(' '),
             id: uid,
             'aria-labelledby': this.hint ? `hint_${uid} ` : null,
-            modelValue: this.modelValue,
+            value: this.modelValue,
             required: this.required,
             "aria-required": this.required,
             onInput: (event) => this.$emit('update:modelValue', event.target.value),

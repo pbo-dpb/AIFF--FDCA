@@ -9,9 +9,5 @@ export default class Contact {
         this.phone = payload?.phone;
         this.postal = payload?.postal;
         this.employee_id = payload?.employee_id;
-
     }
-
-
-
 }

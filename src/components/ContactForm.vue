@@ -41,7 +41,7 @@ export default {
         strings() {
             return Strings;
         }
-    }
+    },
 };
 </script>
   
