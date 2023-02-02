@@ -8,7 +8,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: npm install
+      - run: npm ci
       - run: echo "VITE_CAPTCHA_PUBLIC_KEY=${{ secrets.CAPTCHA_PUBLIC_KEY }}" > .env
       - run: echo "VITE_SUBMIT_ENDPOINT=${{ secrets.SUBMIT_ENDPOINT }}" >> .env
       - run: npm run build
