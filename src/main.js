@@ -1,4 +1,14 @@
-import { defineCustomElement } from 'vue'
-import App from "./App.ce.vue"
+import { defineCustomElement } from "vue";
+import { createPinia } from "pinia";
+import App from "./App.ce.vue";
 
-customElements.define('pbotool-aiff-fdca', defineCustomElement(App))
+
+// Define the custom element
+customElements.define("pbotool-aiff-fdca", defineCustomElement(App, {
+  configureApp(app) {
+    const pinia = createPinia();
+    app.use(pinia);
+  }
+}));
+
+

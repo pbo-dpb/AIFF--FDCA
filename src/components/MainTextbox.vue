@@ -1,31 +1,36 @@
 <template>
-    <fieldset class="flex flex-col gap-4">
-        <TextInput type="multiline" v-model="form.main" :label="label" :hint="hint" :required="true">
-        </TextInput>
-    </fieldset>
+  <fieldset class="flex flex-col gap-4">
+    <TextInput
+      type="multiline"
+      v-model="form.main"
+      :label="label"
+      :hint="hint"
+      :required="true"
+    />
+  </fieldset>
 </template>
-<script>
-import TextInput from "./TextInput.js"
-import Strings from "../Strings.js"
-import AccessibilityRequest from "../AccessibilityRequest";
 
-export default {
-    props: {
-        'form': AccessibilityRequest
-    },
+<script setup>
+import { computed } from "vue";
+import { storeToRefs } from "pinia";
+import { useStringsStore } from "../stores/StringsStore";
+import TextInput from "./TextInput.vue";
 
-    components: {
-        TextInput,
-    },
-    computed: {
+const stringsStore = useStringsStore();
+const { strings } = storeToRefs(stringsStore);
 
-        label() {
-            return Strings.main_textbox[this.form.requestType].label
-        },
-        hint() {
-            return Strings.main_textbox[this.form.requestType].hint
-        }
-    }
-};
+const props = defineProps({
+  form: {
+    type: Object,
+    required: true,
+  },
+});
+
+const label = computed(
+  () => strings.value.main_textbox[props.form.requestType].label
+);
+
+const hint = computed(
+  () => strings.value.main_textbox[props.form.requestType].hint
+);
 </script>
-  

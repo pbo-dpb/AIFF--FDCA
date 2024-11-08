@@ -1,13 +1,13 @@
-const AWS = require('aws-sdk');
-const ses = new AWS.SES({ region: "us-east-1", apiVersion: '2010-12-01' });
-const https = require('https');
-const fs = require('fs');
-const { randomUUID } = require('crypto');
+import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses"
+
+import https from 'https';
+import fs from 'fs';
+import { randomUUID } from 'crypto';
 
 
 const sendConfirmationEmail = async function (strings, emailBody, contact) {
-
-    const emailParams = {
+    const ses = new SESClient({ region: "us-east-1" });
+    await ses.send(new SendEmailCommand({
         Destination: {
             ToAddresses: [contact.email],
         },
@@ -19,15 +19,13 @@ const sendConfirmationEmail = async function (strings, emailBody, contact) {
         },
         Source: process.env.EMAIL_FROM,
         ReplyToAddresses: process.env.EMAIL_REPLY_TO.split(','),
-    };
-
-    const sendPromise = await ses.sendEmail(emailParams).promise();
+    }));
 
 }
 
 const sendInternalEmail = async function (strings, emailBody) {
-
-    const emailParams = {
+    const ses = new SESClient({ region: "us-east-1" });
+    await ses.send(new SendEmailCommand({
         Destination: {
             ToAddresses: process.env.INTERNAL_EMAIL_RECIPIENTS.split(','),
         },
@@ -39,10 +37,7 @@ const sendInternalEmail = async function (strings, emailBody) {
         },
         Source: process.env.EMAIL_FROM,
         ReplyToAddresses: process.env.EMAIL_REPLY_TO.split(','),
-    };
-
-
-    const sendPromise = await ses.sendEmail(emailParams).promise();
+    }));
 
 }
 
@@ -83,11 +78,11 @@ const prepareEmailBody = function (strings, payload) {
 
 
 /**
- *  Validate client captcha; uses Cloudflare's Telescope.
+ *  Validate client captcha; uses Cloudflare's Turnstile.
  */
 const validateCaptcha = async function (token, clientIp) {
 
-    let secretKey = process.env.TELESCOPE_SECRET_KEY;
+    let secretKey = process.env.TURNSTILE_SECRET_KEY;
 
     let postData = new URLSearchParams();
     postData.append('secret', secretKey);
@@ -155,7 +150,14 @@ const isRequestInvalid = function (body, strings) {
 
 }
 
-exports.handler = async (event) => {
+
+export const handler = async (event, context) => {
+
+    if (event.requestContext.http.method !== "POST" || !event.body) {
+        return {
+            statusCode: 405
+        }
+    }
 
     const body = JSON.parse(event.body);
 
@@ -186,10 +188,7 @@ exports.handler = async (event) => {
 
     body.id = body.id ? body.id : randomUUID();
 
-
-
     const emailBody = prepareEmailBody(strings, body);
-
 
     try {
         await sendInternalEmail(strings, emailBody);
