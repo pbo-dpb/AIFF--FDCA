@@ -5,36 +5,24 @@
     </legend>
 
     <div class="flex flex-col border border-gray-300 divide-y divide-gray-300 rounded">
-      <label
-        v-for="[key, label] in Object.entries(strings.request_types.options)"
-        :key="`${uid}_${key}`"
-        :class="[
-          'flex',
-          'motion-safe:transition-all',
-          'flex-row',
-          'gap-2',
-          'px-4',
-          modelValue ? 'py-4 motion-safe:py-2' : 'py-4',
-          'font-semibold',
-          modelValue === key
-            ? ['bg-purple-800', 'text-white']
-            : [
-                'hover:bg-purple-100',
-                'hover:dark:bg-purple-900',
-                'cursor-pointer',
-              ],
-        ]"
-      >
-        <input
-          :name="uid"
-          :id="`${uid}_${key}`"
-          type="radio"
-          :value="key"
-          :checked="modelValue === key"
-          @input="$emit('update:modelValue', key)"
-          class="sr-only"
-          required
-        />
+      <label v-for="[key, label] in Object.entries(strings.request_types.options)" :key="`${uid}_${key}`" :class="[
+        'flex',
+        'motion-safe:transition-all',
+        'flex-row',
+        'gap-2',
+        'px-4',
+        modelValue ? 'py-4 motion-safe:py-2' : 'py-4',
+        'font-semibold',
+        modelValue === key
+          ? ['bg-sky-800', 'text-white']
+          : [
+            'hover:bg-sky-100',
+            'hover:dark:bg-sky-900',
+            'cursor-pointer',
+          ],
+      ]">
+        <input :name="uid" :id="`${uid}_${key}`" type="radio" :value="key" :checked="modelValue === key"
+          @input="$emit('update:modelValue', key)" class="sr-only" required />
         <span :for="`${uid}_${key}`">{{ label }}</span>
       </label>
     </div>

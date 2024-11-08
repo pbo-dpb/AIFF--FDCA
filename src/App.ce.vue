@@ -3,24 +3,14 @@
     <Celebration v-if="state.shouldDisplayCelebration" :form="form" />
 
     <template v-else>
-      <form
-        v-if="form"
-        class="flex flex-col gap-8"
-        @submit.prevent="handleSubmitAction"
-      >
+      <form v-if="form" class="flex flex-col gap-8" @submit.prevent="handleSubmitAction">
         <RequestTypeSelector v-model="form.requestType" />
 
         <MainTextbox v-if="form.requestType" :form="form" />
 
-        <AnonymitySelector
-          v-if="form.requestType && form.canRequestAnonymity"
-          v-model="form.anonymous"
-        />
+        <AnonymitySelector v-if="form.requestType && form.canRequestAnonymity" v-model="form.anonymous" />
 
-        <ContactForm
-          v-if="form.requestType && !form.anonymous"
-          :contact="form.contact"
-        />
+        <ContactForm v-if="form.requestType && !form.anonymous" :contact="form.contact" />
 
         <div v-show="form.requestType">
           <slot></slot>
@@ -29,19 +19,12 @@
         <Error v-if="state.shouldDisplayError" :form="form" />
 
         <div v-if="form.requestType" class="flex flex-row items-center gap-2">
-          <button
-            type="submit"
-            class="rounded bg-purple-800 text-white disabled:opacity-70 enabled:hover:bg-purple-700 enabled:dark:hover:bg-purple-900 px-4 py-2 md:w-fit"
-            :disabled="state.submittingForm"
-            :aria-busy="state.submittingForm"
-          >
+          <button type="submit"
+            class="rounded bg-sky-800 text-white disabled:opacity-70 enabled:hover:bg-sky-700 enabled:dark:hover:bg-sky-900 px-4 py-2 md:w-fit"
+            :disabled="state.submittingForm" :aria-busy="state.submittingForm">
             {{ strings.submit_button_label }}
           </button>
-          <LoadingIndicator
-            v-if="state.submittingForm"
-            aria-hidden="true"
-            class="h-8 w-8"
-          />
+          <LoadingIndicator v-if="state.submittingForm" aria-hidden="true" class="h-8 w-8" />
         </div>
       </form>
     </template>
