@@ -193,7 +193,6 @@ export const handler = async (event, context) => {
     try {
         await sendInternalEmail(strings, emailBody);
     } catch (e) {
-        console.log(emailBody);
         console.error(e);
         return {
             statusCode: 500,

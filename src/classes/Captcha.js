@@ -2,6 +2,11 @@ const publicKey = import.meta.env.VITE_CAPTCHA_PUBLIC_KEY;
 
 export default class Captcha {
   constructor() {
+
+    if (window.hasInitializedTurnstile) {
+      return;
+    }
+
     this.token = null;
 
     this.captchaContainerId = `captcha_${Math.ceil(Math.random() * 10000)}`;
@@ -10,6 +15,7 @@ export default class Captcha {
       window.turnstile.render(
         document.querySelector(`#${this.captchaContainerId}`),
         {
+          language: document.documentElement.lang || "en",
           sitekey: publicKey,
           callback: (token) => {
             this.token = token;
@@ -35,6 +41,8 @@ export default class Captcha {
       "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback"
     );
     document.head.appendChild(captchaScript);
+
+    window.hasInitializedTurnstile = true;
   }
 
   refreshToken() {

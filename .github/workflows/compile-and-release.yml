@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
       - run: npm ci
       - run: echo "VITE_CAPTCHA_PUBLIC_KEY=${{ secrets.CAPTCHA_PUBLIC_KEY }}" > .env
       - run: echo "VITE_SUBMIT_ENDPOINT=${{ secrets.SUBMIT_ENDPOINT }}" >> .env
