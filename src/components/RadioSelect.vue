@@ -1,23 +1,13 @@
 <template>
-  <fieldset class="flex flex-col gap-4 border border-gray-300 p-3">
+  <fieldset class="flex flex-col gap-4 border border-solid border-gray-300 p-3">
     <legend class="font-semibold" :class="{ 'text-lg': level === 0 }">
       {{ legend }}
     </legend>
 
-    <label
-      v-for="[value, label] in Object.entries(options)"
-      :key="getRadioId(label)"
-      class="flex flex-row gap-2 items-center"
-    >
-      <input
-        type="radio"
-        :name="uid"
-        :id="getRadioId(label)"
-        :value="value"
-        :checked="modelValue == value"
-        @change="$emit('update:modelValue', value)"
-        required
-      />
+    <label v-for="[value, label] in Object.entries(options)" :key="getRadioId(label)"
+      class="flex flex-row gap-2 items-center">
+      <input type="radio" :name="uid" :id="getRadioId(label)" :value="value" :checked="modelValue == value"
+        @change="$emit('update:modelValue', value)" required />
       <span :for="getRadioId(label)">{{ label }}</span>
     </label>
   </fieldset>

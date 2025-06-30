@@ -4,7 +4,7 @@
       {{ strings.request_types.legend }}
     </legend>
 
-    <div class="flex flex-col border border-gray-300 divide-y divide-gray-300 rounded">
+    <div class="flex flex-col border border-solid border-gray-300 divide-y divide-gray-300 rounded-sm">
       <label v-for="[key, label] in Object.entries(strings.request_types.options)" :key="`${uid}_${key}`" :class="[
         'flex',
         'motion-safe:transition-all',
@@ -17,7 +17,7 @@
           ? ['bg-sky-800', 'text-white']
           : [
             'hover:bg-sky-100',
-            'hover:dark:bg-sky-900',
+            'dark:hover:bg-sky-900',
             'cursor-pointer',
           ],
       ]">

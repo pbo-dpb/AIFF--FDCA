@@ -20,7 +20,7 @@
 
         <div v-if="form.requestType" class="flex flex-row items-center gap-2">
           <button type="submit"
-            class="rounded bg-sky-800 text-white disabled:opacity-70 enabled:hover:bg-sky-700 enabled:dark:hover:bg-sky-900 px-4 py-2 md:w-fit"
+            class="rounded-sm bg-sky-800 text-white disabled:opacity-70 enabled:hover:bg-sky-700 dark:enabled:hover:bg-sky-900 px-4 py-2 md:w-fit"
             :disabled="state.submittingForm" :aria-busy="state.submittingForm">
             {{ strings.submit_button_label }}
           </button>

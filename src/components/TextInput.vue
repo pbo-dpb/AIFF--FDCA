@@ -4,7 +4,7 @@
     <label :for="uid" :class="[
       'font-semibold flex flex-row gap-1 items-center',
       shouldDisplayValidationState
-        ? 'peer-invalid:text-red-800 peer-invalid:dark:text-red-200'
+        ? 'peer-invalid:text-red-800 dark:peer-invalid:text-red-200'
         : '',
       level === 0 ? 'text-lg' : '',
     ]">
@@ -17,7 +17,7 @@
       ...baseClasses,
       type === 'multiline' ? 'h-64' : '',
       shouldDisplayValidationState
-        ? 'invalid:bg-red-100 invalid:dark:bg-red-900'
+        ? 'invalid:bg-red-100 dark:invalid:bg-red-900'
         : '',
     ]" :id="uid" :aria-labelledby="hint ? `hint_${uid}` : null" :value="modelValue" :required="required"
       :aria-required="required" @input="$emit('update:modelValue', $event.target.value)"
@@ -76,10 +76,11 @@ const uid = computed(() => idManager.generateInputId(props.label));
 
 const baseClasses = [
   "border",
+  "border-solid",
   "border-gray-300",
   "dark:border-gray-700",
-  "rounded",
-  "p-1",
+  "rounded-sm",
+  "p-2",
   "peer",
   "dark:bg-gray-800",
   "dark:text-white",

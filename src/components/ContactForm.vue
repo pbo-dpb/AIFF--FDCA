@@ -1,5 +1,5 @@
 <template>
-  <fieldset class="flex flex-col gap-4 p-4 border border-sky-300 rounded shadow">
+  <fieldset class="flex flex-col gap-4 p-4 border border-solid border-sky-300 rounded-sm shadow-sm">
     <legend class="font-semibold px-4 text-lg">
       {{ strings.contact_form.legend }}
     </legend>
