@@ -17,6 +17,7 @@ export default class Captcha {
         document.querySelector(`#${this.captchaContainerId}`),
         {
           language: document.documentElement.lang || "en",
+          appearance: "interaction-only",
           sitekey: publicKey,
           callback: (token) => {
             this.token = token;
