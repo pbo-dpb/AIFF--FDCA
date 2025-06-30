@@ -1,15 +1,16 @@
 const publicKey = import.meta.env.VITE_CAPTCHA_PUBLIC_KEY;
 
 export default class Captcha {
-  constructor() {
-
-    if (window.hasInitializedTurnstile) {
-      return;
-    }
+  constructor(capid) {
 
     this.token = null;
+    this.capid = capid || null;
 
-    this.captchaContainerId = `captcha_${Math.ceil(Math.random() * 10000)}`;
+    this.captchaContainerId = capid || "turnstile-captcha-container";
+
+    if (!window.aiff_turnstile_tokens) {
+      window.aiff_turnstile_tokens = {};
+    }
 
     window.onloadTurnstileCallback = () => {
       window.turnstile.render(
@@ -19,6 +20,7 @@ export default class Captcha {
           sitekey: publicKey,
           callback: (token) => {
             this.token = token;
+            window.aiff_turnstile_tokens[this.capid] = token;
 
             setTimeout(() => {
               this.refreshToken();
@@ -42,7 +44,6 @@ export default class Captcha {
     );
     document.head.appendChild(captchaScript);
 
-    window.hasInitializedTurnstile = true;
   }
 
   refreshToken() {

@@ -4,7 +4,7 @@ import Contact from "./Contact.js";
 
 export default class AccessibilityRequest {
   constructor(payload) {
-    this.captcha = new Captcha();
+    this.captcha = new Captcha(`captcha_${Math.ceil(Math.random() * 10000)}`);
     this.id = payload?.id;
     this.request_type = payload?.request_type;
     this.main = payload?.main ?? "";
@@ -48,11 +48,23 @@ export default class AccessibilityRequest {
   }
 
   serialize() {
-    return JSON.stringify(this);
+
+    if (!this.captcha.token) {
+      serializedForm.captcha.token = window.aiff_turnstile_tokens?.[this.captcha.capid] || null;
+    }
+
+    const structuredForm = JSON.parse(JSON.stringify(this));
+
+    if (true || !structuredForm?.captcha?.token) {
+      structuredForm.captcha.token = window.aiff_turnstile_tokens?.[this.captcha.capid] || null;
+    }
+
+    return JSON.stringify(structuredForm);
   }
 
   async submit() {
-    const serializedForm = this.serialize();
+    let serializedForm = this.serialize();
+
 
     const rawResponse = await fetch(endpointUrl, {
       method: "POST",
