@@ -4,8 +4,8 @@ jobs:
   compile-assets-and-push-release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
       - run: npm ci
@@ -32,7 +32,7 @@ jobs:
   deploy-server-side-script:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Prepare Lambda package
         run: cp ./src/assets/strings.en.json .lambda-mail-form-handler/strings.en.json && cp ./src/assets/strings.fr.json .lambda-mail-form-handler/strings.fr.json && cd .lambda-mail-form-handler && zip ../deployment.zip . -r
       - name: Deploy to Lambda
