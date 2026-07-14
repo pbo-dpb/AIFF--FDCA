@@ -1,6 +1,7 @@
 # Vue 3 + Vite + Web Components (composants web)
 
 ## Project setup // Mise en route
+
 ```
 npm install
 ```
@@ -8,11 +9,13 @@ npm install
 ## Compilation // Compilation
 
 ### Compiles and hot-reloads for development // Compilations et recharges à chaud pour le développement
+
 ```
 npm run dev
 ```
 
 ### Compiles and minifies for production // Compilation et miniaturisation pour la production
+
 ```
 npm run build
 ```

@@ -1,45 +1,45 @@
 name: compile-and-release
 on: [workflow_dispatch]
 jobs:
-  compile-assets-and-push-release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
-        with:
-          node-version: '22'
-      - run: npm ci
-      - run: echo "VITE_CAPTCHA_PUBLIC_KEY=${{ secrets.CAPTCHA_PUBLIC_KEY }}" > .env
-      - run: echo "VITE_SUBMIT_ENDPOINT=${{ secrets.SUBMIT_ENDPOINT }}" >> .env
-      - run: npm run build
-      - uses: montudor/action-zip@v1
-        with:
-          args: zip -qq -r dist.zip dist
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: false
-          files: |
-            dist.zip
-      - uses: shallwefootball/s3-upload-action@master
-        with:
-          aws_key_id: ${{ secrets.AWS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-          aws_bucket: ${{ secrets.AWS_BUCKET }}
-          source_dir: 'dist'
-          destination_dir: ''
-  deploy-server-side-script:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - name: Prepare Lambda package
-        run: cp ./src/assets/strings.en.json .lambda-mail-form-handler/strings.en.json && cp ./src/assets/strings.fr.json .lambda-mail-form-handler/strings.fr.json && cd .lambda-mail-form-handler && zip ../deployment.zip . -r
-      - name: Deploy to Lambda
-        uses: appleboy/lambda-action@master
-        with:
-          aws_access_key_id: ${{ secrets.AWS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_region: ca-central-1
-          function_name: aiff-email-form
-          zip_file: deployment.zip
+    compile-assets-and-push-release:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+            - uses: actions/setup-node@v5
+              with:
+                  node-version: "22"
+            - run: npm ci
+            - run: echo "VITE_CAPTCHA_PUBLIC_KEY=${{ secrets.CAPTCHA_PUBLIC_KEY }}" > .env
+            - run: echo "VITE_SUBMIT_ENDPOINT=${{ secrets.SUBMIT_ENDPOINT }}" >> .env
+            - run: npm run build
+            - uses: montudor/action-zip@v1
+              with:
+                  args: zip -qq -r dist.zip dist
+            - uses: "marvinpinto/action-automatic-releases@latest"
+              with:
+                  repo_token: "${{ secrets.GITHUB_TOKEN }}"
+                  automatic_release_tag: "latest"
+                  prerelease: false
+                  files: |
+                      dist.zip
+            - uses: shallwefootball/s3-upload-action@master
+              with:
+                  aws_key_id: ${{ secrets.AWS_KEY_ID }}
+                  aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+                  aws_bucket: ${{ secrets.AWS_BUCKET }}
+                  source_dir: "dist"
+                  destination_dir: ""
+    deploy-server-side-script:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+            - name: Prepare Lambda package
+              run: cp ./src/assets/strings.en.json .lambda-mail-form-handler/strings.en.json && cp ./src/assets/strings.fr.json .lambda-mail-form-handler/strings.fr.json && cd .lambda-mail-form-handler && zip ../deployment.zip . -r
+            - name: Deploy to Lambda
+              uses: appleboy/lambda-action@master
+              with:
+                  aws_access_key_id: ${{ secrets.AWS_KEY_ID }}
+                  aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws_region: ca-central-1
+                  function_name: aiff-email-form
+                  zip_file: deployment.zip

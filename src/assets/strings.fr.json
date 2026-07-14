@@ -16,7 +16,7 @@
         "general_comment": {
             "label": "Quel est votre commentaire ?"
         },
-        "alt_document_request":{
+        "alt_document_request": {
             "label": "Quel document souhaitez-vous recevoir ?",
             "hint": "Veuillez fournir le nom du document et l'année de publication, ou son URL."
         },
@@ -25,7 +25,7 @@
             "hint": "Veuillez nous indiquer comment nous pouvons vous aider, de la manière la plus détaillée possible."
         }
     },
-    "anonymity_selector":{
+    "anonymity_selector": {
         "legend": "Souhaitez-vous soumettre cette demande de manière anonyme ?",
         "choices": {
             "yes": {
@@ -39,24 +39,24 @@
     "contact_form": {
         "legend": "Comment pouvons-nous vous contacter ?",
         "name": {
-            "label":"Nom"
+            "label": "Nom"
         },
         "preferred_method": {
             "legend": "Quelle est votre méthode de contact préférée ?",
             "options": {
                 "email": "Par courriel",
-                "phone":"Au téléphone",
+                "phone": "Au téléphone",
                 "postal": "Courrier postal"
             }
         },
         "email": {
-            "label":"Courriel"
+            "label": "Courriel"
         },
         "phone": {
-            "label":"Numéro de téléphone"
+            "label": "Numéro de téléphone"
         },
         "postal": {
-            "label":"Adresse postale"
+            "label": "Adresse postale"
         }
     },
     "submit_button_label": "Soumettre",
@@ -75,14 +75,12 @@
         "message": "Un problème informatique nous empêche d'envoyer votre formulaire. Veuillez nous contacter par courriel ou par téléphone pour nous faire part de votre requête. Nous nous excusons des inconvénients que cette situation peut vous causer."
     },
     "emails": {
-        
         "internal": {
             "subject": "Demandes de renseignements et commentaires sur l'accessibilité"
         },
         "confirmation": {
-                "subject": "Confirmation de la soumission",
-                "body": "Nous vous remercions d'avoir soumis votre demande. Vous trouverez une copie des informations soumises ci-dessous. N'hésitez pas à contacter notre équipe pour plus de précisions ou si vous avez des questions."
+            "subject": "Confirmation de la soumission",
+            "body": "Nous vous remercions d'avoir soumis votre demande. Vous trouverez une copie des informations soumises ci-dessous. N'hésitez pas à contacter notre équipe pour plus de précisions ou si vous avez des questions."
         }
-        
     }
 }

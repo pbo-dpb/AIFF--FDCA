@@ -16,7 +16,7 @@
         "general_comment": {
             "label": "What is your comment?"
         },
-        "alt_document_request":{
+        "alt_document_request": {
             "label": "What document would you like to receive?",
             "hint": "Please provide the document name and year of publication, or its URL."
         },
@@ -25,7 +25,7 @@
             "hint": "Please let us know how we can help you in as much detail as possible."
         }
     },
-    "anonymity_selector":{
+    "anonymity_selector": {
         "legend": "Would you like to submit this request anonymously?",
         "choices": {
             "yes": {
@@ -39,24 +39,24 @@
     "contact_form": {
         "legend": "How can we contact you?",
         "name": {
-            "label":"Name"
+            "label": "Name"
         },
         "preferred_method": {
             "legend": "What is your preferred method of contact?",
             "options": {
                 "email": "By email",
-                "phone":"Over the phone",
+                "phone": "Over the phone",
                 "postal": "Regular mail"
             }
         },
         "email": {
-            "label":"Email"
+            "label": "Email"
         },
         "phone": {
-            "label":"Phone Number"
+            "label": "Phone Number"
         },
         "postal": {
-            "label":"Address"
+            "label": "Address"
         }
     },
     "submit_button_label": "Submit",
@@ -75,14 +75,12 @@
         "message": "A technical issue prevents us from sending your form. Please contact us by email or by phone to let us know your request. We apologize for any inconvenience this may cause you."
     },
     "emails": {
-        
         "internal": {
             "subject": "Accessibility Inquiries and Feedback"
         },
         "confirmation": {
-                "subject": "Submission confirmation",
-                "body": "Thank you for submitting your request. You will find a copy of the information submitted below. Please feel free to contact our team for further clarification or if you have any questions."
+            "subject": "Submission confirmation",
+            "body": "Thank you for submitting your request. You will find a copy of the information submitted below. Please feel free to contact our team for further clarification or if you have any questions."
         }
-        
     }
 }
